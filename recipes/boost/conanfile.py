@@ -89,7 +89,7 @@ CONFIGURE_OPTIONS = (
 
 class BoostConan(ConanFile):
     name = "boost"
-    version = "tci-1.89.0"
+    version = "tci-1.90.0"
     description = "Boost provides free peer-reviewed portable C++ source libraries"
     url = "https://github.com/conan-io/conan-center-index"
     homepage = "https://www.boost.org"
@@ -775,6 +775,12 @@ class BoostConan(ConanFile):
             if Version(self.version) == "1.86.0" and is_msvc(self):
                 setattr(self.options, "without_process", True)
 
+        if Version(self.version) == "1.90.0":
+            # FIXME: boost.coroutine doesn't support Windows ARM64 due to missing context assembly
+            # See https://github.com/boostorg/context/issues/296
+            if self._is_windows_platform and "arm" in str(self.settings.arch):
+                self.options.without_coroutine = True
+
     @property
     def _configure_options(self):
         return self._dependencies["configure_options"]
@@ -1134,7 +1140,7 @@ class BoostConan(ConanFile):
     def source(self):
         get(
             self,
-            f"https://archives.boost.io/release/1.89.0/source/boost_1_89_0.tar.bz2",
+            f"https://archives.boost.io/release/1.90.0/source/boost_1_90_0.tar.bz2",
             destination=self.source_folder,
             strip_root=True,
         )
