@@ -19,7 +19,7 @@ from conan.tools.microsoft import is_msvc_static_runtime
 from conan.tools.scm import Version
 import os
 
-required_conan_version = ">=2.4"
+required_conan_version = ">=2.5"
 
 
 class SymengineConan(ConanFile):
