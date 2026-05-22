@@ -11,12 +11,12 @@ from conan.tools.scm import Version
 import os
 import textwrap
 
-required_conan_version = ">=2.4"
+required_conan_version = ">=2.5"
 
 
 class Catch2Conan(ConanFile):
     name = "catch2"
-    version = "3.14.0"
+    version = "3.15.0"
     description = (
         "A modern, C++-native, header-only, framework for unit-tests, TDD and BDD"
     )
@@ -68,7 +68,7 @@ class Catch2Conan(ConanFile):
 
     def build_requirements(self):
         if Version(self.version) >= "3.8.0":
-            self.tool_requires("cmake/[>=3.16 <4]")
+            self.tool_requires("cmake/[>=4.3 <5]")
 
     def validate(self):
         check_min_cppstd(self, 14)
