@@ -7,7 +7,7 @@ from conan.tools.files import copy, get
 from conan.tools.layout import basic_layout
 import os
 
-required_conan_version = ">=2.5"
+required_conan_version = ">=2.6"
 
 
 class NanobindJsonConan(ConanFile):
