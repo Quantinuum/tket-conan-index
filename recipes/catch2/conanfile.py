@@ -16,7 +16,7 @@ required_conan_version = ">=2.7"
 
 class Catch2Conan(ConanFile):
     name = "catch2"
-    version = "3.15.0"
+    version = "3.15.1"
     description = (
         "A modern, C++-native, header-only, framework for unit-tests, TDD and BDD"
     )
@@ -33,6 +33,7 @@ class Catch2Conan(ConanFile):
         "default_reporter": [None, "ANY"],
         "console_width": [None, "ANY"],
         "no_posix_signals": [True, False],
+        "thread_safe_assertions": [True, False],
     }
     default_options = {
         "shared": False,
@@ -41,6 +42,7 @@ class Catch2Conan(ConanFile):
         "default_reporter": None,
         "console_width": "80",
         "no_posix_signals": False,
+        "thread_safe_assertions": False,
     }
     # disallow cppstd compatibility, as it affects the ABI in this library
     # see https://github.com/conan-io/conan-center-index/issues/19008
@@ -103,6 +105,7 @@ class Catch2Conan(ConanFile):
         if self.options.default_reporter:
             tc.variables["CATCH_CONFIG_DEFAULT_REPORTER"] = self._default_reporter_str
         tc.variables["CATCH_CONFIG_NO_POSIX_SIGNALS"] = self.options.no_posix_signals
+        tc.variables["CATCH_CONFIG_THREAD_SAFE_ASSERTIONS"] = self.options.thread_safe_assertions
         tc.generate()
 
     def build(self):
