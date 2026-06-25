@@ -8,7 +8,7 @@ from conan.tools.microsoft import check_min_vs, is_msvc, unix_path
 import os
 import stat
 
-required_conan_version = ">=2.7"
+required_conan_version = ">=2.8"
 
 
 class GmpConan(ConanFile):
