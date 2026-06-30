@@ -24,7 +24,7 @@ required_conan_version = ">=2.8"
 
 class SymengineConan(ConanFile):
     name = "symengine"
-    version = "tci-0.14.0.2"
+    version = "tci-0.14.0.3"
     description = "A fast symbolic manipulation library, written in C++"
     license = "MIT"
     topics = ("symbolic", "algebra")
@@ -62,7 +62,7 @@ class SymengineConan(ConanFile):
 
     def requirements(self):
         self.requires("gmp/tci-6.3.0@tket/stable", transitive_headers=True, transitive_libs=True)
-        self.requires("fast_float/8.1.0")
+        self.requires("fast_float/8.2.10")
 
     def source(self):
         get(
