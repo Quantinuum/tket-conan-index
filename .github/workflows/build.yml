@@ -20,7 +20,7 @@ jobs:
       changed_recipe_files: ${{ steps.filter.outputs.changed_files }}
     steps:
     - uses: actions/checkout@v7
-    - uses: dorny/paths-filter@v4.0.1
+    - uses: dorny/paths-filter@v4.0.2
       id: filter
       with:
         base: ${{ github.ref }}
