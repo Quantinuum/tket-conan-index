@@ -12,7 +12,7 @@ required_conan_version = ">=2.8"
 
 class NanobindJsonConan(ConanFile):
     name = "nanobind_json"
-    version = "tci-20250327"
+    version = "tci-20260807"
     homepage = "https://github.com/ianhbell/nanobind_json"
     description = "nanobind wrappers of the nlohmann::json library"
     topics = (
@@ -36,7 +36,7 @@ class NanobindJsonConan(ConanFile):
 
     def requirements(self):
         self.requires("nlohmann_json/3.11.3")
-        self.requires("nanobind/tci-2.5.0@tket/stable")
+        self.requires("nanobind/tci-2.14.0@tket/stable")
 
     def source(self):
         get(
