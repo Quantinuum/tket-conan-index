@@ -10,7 +10,7 @@ required_conan_version = ">=2.8"
 
 class NanobindConan(ConanFile):
     name = "nanobind"
-    version = "tci-2.13.0"
+    version = "tci-2.14.0"
     description = "Tiny and efficient C++/Python bindings"
     license = "BSD-3-Clause"
     url = "https://github.com/conan-io/conan-center-index"
@@ -31,7 +31,7 @@ class NanobindConan(ConanFile):
     def source(self):
         get(
             self,
-            f"https://github.com/wjakob/nanobind/archive/refs/tags/v2.13.0.tar.gz",
+            f"https://github.com/wjakob/nanobind/archive/refs/tags/v2.14.0.tar.gz",
             strip_root=True,
         )
 
