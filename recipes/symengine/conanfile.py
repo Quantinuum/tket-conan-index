@@ -91,13 +91,6 @@ class SymengineConan(ConanFile):
         deps.generate()
 
     def _patch_sources(self):
-        # Disable hardcoded C++11
-        replace_in_file(
-            self,
-            os.path.join(self.source_folder, "CMakeLists.txt"),
-            'set(CMAKE_CXX_FLAGS "${CXX11_OPTIONS} ${CMAKE_CXX_FLAGS}")',
-            "",
-        )
         # Let Conan choose fPIC
         replace_in_file(
             self,
