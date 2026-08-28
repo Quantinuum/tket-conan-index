@@ -24,7 +24,7 @@ required_conan_version = ">=2.8"
 
 class SymengineConan(ConanFile):
     name = "symengine"
-    version = "tci-0.15.0"
+    version = "tci-0.14.0.3"
     description = "A fast symbolic manipulation library, written in C++"
     license = "MIT"
     topics = ("symbolic", "algebra")
@@ -67,7 +67,7 @@ class SymengineConan(ConanFile):
     def source(self):
         get(
             self,
-            f"https://github.com/symengine/symengine/archive/refs/tags/v0.15.0.tar.gz",
+            f"https://github.com/symengine/symengine/archive/refs/tags/v0.14.0.tar.gz",
             destination=self.source_folder,
             strip_root=True,
         )
@@ -91,6 +91,13 @@ class SymengineConan(ConanFile):
         deps.generate()
 
     def _patch_sources(self):
+        # Disable hardcoded C++11
+        replace_in_file(
+            self,
+            os.path.join(self.source_folder, "CMakeLists.txt"),
+            'set(CMAKE_CXX_FLAGS "${CXX11_OPTIONS} ${CMAKE_CXX_FLAGS}")',
+            "",
+        )
         # Let Conan choose fPIC
         replace_in_file(
             self,
@@ -104,6 +111,13 @@ class SymengineConan(ConanFile):
             os.path.join(self.source_folder, "CMakeLists.txt"),
             "set(LIBS ${LIBS} ${GMP_TARGETS})",
             "set(LIBS ${LIBS} gmp::gmp)",
+        )
+        # Require cmake >= 3.5, for cmake 4.0 compatibility
+        replace_in_file(
+            self,
+            os.path.join(self.source_folder, "cmake", "SymEngineConfig.cmake.in"),
+            "cmake_minimum_required(VERSION 2.8.12)",
+            "cmake_minimum_required(VERSION 3.5)",
         )
 
     def build(self):
